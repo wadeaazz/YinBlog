@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+import markdown
+from django.utils.html import strip_tags
 # Create your models here.
 
 class   Category(models.Model):
@@ -26,6 +28,28 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag,blank=True)
     author = models.ForeignKey(User)
     views = models.PositiveIntegerField(default=0)
+
+    def save(self,*args,**kwargs):
+        # 如果没有填写摘要
+        if not self.excerpt:
+            # 首先实例化一个markdown类，用于渲染body的文本
+            md = markdown.Markdown(extensions=[
+                'markdown.extensions.extra',
+                'markdow.extensions.codehilite',
+
+            ]
+            )
+            #先将markdown文本渲染成html文本
+            #strip_tags去掉html文本的全部html标签
+            #从文本摘取前54个字符赋给excerpt
+            self.excerpt = strip_tags(md.convert(self.body))[:54]
+            #调用父类的save方法将数据保存到数据库中
+            super(Post,self).save(*args,**kwargs)
+
+
+
+
+
 
     def increase_views(self):
         self.views +=1
