@@ -36,9 +36,8 @@ class Post(models.Model):
             md = markdown.markdown(extensions=[
                 'markdown.extensions.extra',
                 'markdow.extensions.codehilite',
-
-            ]
-            )
+                'markdown.extensions.toc',
+            ])
             #先将markdown文本渲染成html文本
             #strip_tags去掉html文本的全部html标签
             #从文本摘取前54个字符赋给excerpt
