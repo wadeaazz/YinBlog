@@ -47,12 +47,8 @@ class Post(models.Model):
             super(Post,self).save(*args,**kwargs)
 
 
-
-
-
-
     def increase_views(self):
-        self.views +=1
+        self.views += 1
         self.save(update_fields=['views'])
 
     def __str__(self):
