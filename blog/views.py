@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from  .models import Post,Category
 from django.http import HttpResponse
 from comments.forms import CommentForm
-from markdown import markdown
+import markdown
 # Create your views here.
 
 def index(request):
