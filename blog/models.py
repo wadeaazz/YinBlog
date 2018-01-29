@@ -33,7 +33,7 @@ class Post(models.Model):
         # 如果没有填写摘要
         if not self.excerpt:
             # 首先实例化一个markdown类，用于渲染body的文本
-            md = markdown.Markdown(extensions=[
+            md = markdown.markdown(extensions=[
                 'markdown.extensions.extra',
                 'markdow.extensions.codehilite',
 
