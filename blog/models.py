@@ -35,7 +35,7 @@ class Post(models.Model):
             # 首先实例化一个markdown类，用于渲染body的文本
             md = markdown.Markdown(extensions=[
                 'markdown.extensions.extra',
-                'markdow.extensions.codehilite',
+                'markdown.extensions.codehilite',
             ])
             #先将markdown文本渲染成html文本
             #strip_tags去掉html文本的全部html标签
