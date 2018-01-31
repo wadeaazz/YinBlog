@@ -3,7 +3,16 @@ from  .models import Post,Category
 from django.http import HttpResponse
 from comments.forms import CommentForm
 import markdown
+from django.views.generic import ListView
 # Create your views here.
+
+class IndexView(ListView):
+    model = Post
+    template_name = 'blog/index.html'
+    context_object_name = 'post_list'
+
+
+
 
 def index(request):
    post_list = Post.objects.all().order_by('-created_time')
