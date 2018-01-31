@@ -4,12 +4,15 @@ from django.http import HttpResponse
 from comments.forms import CommentForm
 import markdown
 from django.views.generic import ListView,DetailView
+
+
 # Create your views here.
 
 class IndexView(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
+    paginate_by = 10
 
 
 
