@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 import markdown
 from django.utils.html import strip_tags
+
 # Create your models here.
 
 class   Category(models.Model):
@@ -14,6 +15,7 @@ class   Category(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
+
 
     def __str__(self):
         return self.name

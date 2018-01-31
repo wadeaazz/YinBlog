@@ -143,17 +143,6 @@ class IndexView(ListView):
 
         return data
 
-
-
-
-
-
-
-
-
-
-
-
 class CategoryView(ListView):
     model = Post
     template_name = 'blog/index.html'
