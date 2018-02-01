@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from  .models import Post,Category
+from  .models import Post,Category,Tag
 from django.http import HttpResponse
 from comments.forms import CommentForm
 import markdown
@@ -193,6 +193,14 @@ class   PostDetailView(DetailView):
         })
 
         return context
+
+class   TagView(ListView):
+    model = Post
+    template_name = 'blog/index.html'
+    context_object_name = 'post_list'
+    def get_queryset(self):
+        tag = get_object_or_404(Tag,pk=self.kwargs.get('pk'))
+        return super(TagView,self).get_queryset().filter(tags=tag)
 
 
 
