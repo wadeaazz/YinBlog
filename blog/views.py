@@ -211,7 +211,7 @@ def search(request):
     if not q:
         error_msg = '请输入关键词'
         return render(request,'blog/index.html',{'error_msg':error_msg})
-    post_list = Post.objects.filter(Q(title__contains=q)| Q(body__contains=q))
+    post_list = Post.objects.filter(Q(title__icontains=q)   |   Q(body__icontains=q))
     return render(request,'blog/index.html',{'error_msg':error_msg},
                   {'post_list':post_list})
 
